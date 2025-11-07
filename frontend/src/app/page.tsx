@@ -18,6 +18,7 @@ export default function Page() {
     load();
   }, []);
 
+  //comment
   async function handlePlay(url: string, name: string) {
     // if clicking the same song while playing → pause
     if (currentSongName === name) {
