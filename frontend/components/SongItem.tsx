@@ -16,10 +16,10 @@ export default function SongItem({
   analyser: AnalyserNode | null;
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-white/10 py-3 gap-4">
+    <div className="flex items-center justify-between border-b border-white w-full py-3 gap-4">
       <span className="font-medium text-white">{name}</span>
 
-      <div className="min-w-[130px] flex justify-center">
+      <div className="flex justify-center">
         <Visualizer analyser={analyser} isPlaying={isPlaying} />
       </div>
 

@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Soup Web Music Player',
-  description: 'Play songs from Azure Function',
+  title: 'Soup Web',
+  description: 'Listening to soup songs on the soup web',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

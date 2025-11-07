@@ -49,19 +49,28 @@ export default function Page() {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-xl mb-4 font-bold">Soup Songs</h1>
+    <div className="max-w-xl">
+      <div className="bg-red-500 w-screen overflow-hidden p-4">
+        <h1 className="text-7xl font-bold whitespace-nowrap animate-marquee">
+          WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB
+        </h1>
+      </div>
 
-      {songs.map((s) => (
-        <SongItem
-          key={s.name}
-          name={s.name}
-          url={s.url}
-          isPlaying={currentSongName === s.name}
-          onPlay={handlePlay}
-          analyser={analyser}
-        />
-      ))}
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center justify-center gap-4">
+          {songs.map((s) => (
+            <SongItem
+              key={s.name}
+              name={s.name}
+              url={s.url}
+              isPlaying={currentSongName === s.name}
+              onPlay={handlePlay}
+              analyser={analyser}
+            />
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }

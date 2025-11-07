@@ -47,7 +47,7 @@ export default function Visualizer({ analyser, isPlaying }: Props) {
             for (let i = 0; i < bins.length; i++) {
                 const barHeight = bins[i] / 10; // adjust visual scale
 
-                ctx.fillStyle = "#16a34a";
+                ctx.fillStyle = "#ff0000";
                 ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
 
                 x += barWidth;
