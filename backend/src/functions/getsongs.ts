@@ -30,7 +30,7 @@ app.http('getsongs', {
                 expiresOn: new Date(new Date().valueOf() + 3600 * 1000)
             }, creds).toString();
 
-            const url = `https://${accountName}.blob.core.windows.net/${containerName}/${blob.name}?${sas}`;
+            const url = `https://${accountName}.blob.core.windows.net/${containerName}/${encodeURIComponent(blob.name)}?${sas}`;
 
             items.push({ name: blob.name, url });
         }

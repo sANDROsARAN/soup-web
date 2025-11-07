@@ -57,6 +57,6 @@ export default function Visualizer({ analyser, isPlaying }: Props) {
         draw();
     }, [analyser, isPlaying]);
 
-    return <canvas ref={canvasRef} className="w-full h-8" />
-        ;
+    return <canvas ref={canvasRef} className="w-full h-12" />;
+        
 }
