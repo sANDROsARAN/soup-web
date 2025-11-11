@@ -1,15 +1,20 @@
-import './globals.css';
+import Spotlight from "@/components/Spotlight";
+import "./globals.css";
 import BackgroundImage from "@/assets/soubwebbg.png";
-
+import Banner from "@/components/Banner";
 
 export const metadata = {
-  title: 'Soup Web',
-  description: 'Listening to soup songs on the soup web',
+  title: "Soup Web",
+  description: "Listening to soup songs on the soup web",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return( 
-  <html
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
       lang="en"
       style={{
         backgroundImage: `url(${BackgroundImage.src})`,
@@ -18,6 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         backgroundPosition: "center",
         backgroundAttachment: "fixed", // This keeps the background fixed while scrolling
       }}
-    ><body>{children}</body></html>);
+    >
+      <body>
+        <Banner/>
+        {children}
+        <Spotlight />
+      </body>
+    </html>
+  );
 }
-

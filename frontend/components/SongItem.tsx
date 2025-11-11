@@ -16,7 +16,7 @@ export default function SongItem({
   return (
     <div
       className="relative flex items-center justify-between cursor-pointer 
-      transition-all duration-300 hover:text-black w-full h-full"
+      transition-all duration-300 hover:text-black w-full h-full border border-[#0000FF]"
     >
       {/* Visualizer as background */}
       <div className="absolute inset-0 z-0">
