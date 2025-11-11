@@ -23,11 +23,19 @@ app.http('getsongs', {
         for await (const blob of containerClient.listBlobsFlat()) {
 
             // generate a SAS URL (valid for 1 hour)
+            const now = new Date();
+            const startsOn = new Date(now.getTime() - 10 * 60 * 1000); // 10 min buffer
+            const expiresOn = new Date(now.getTime() + 60 * 60 * 1000); // 1 hour
+            console.log("UTC time now:", new Date().toISOString());
+
+
+            // Make sure these are UTC timestamps
             const sas = generateBlobSASQueryParameters({
                 containerName,
                 blobName: blob.name,
                 permissions: BlobSASPermissions.parse("r"),
-                expiresOn: new Date(new Date().valueOf() + 3600 * 1000)
+                startsOn,
+                expiresOn
             }, creds).toString();
 
             const url = `https://${accountName}.blob.core.windows.net/${containerName}/${blob.name}?${sas}`;
@@ -39,9 +47,12 @@ app.http('getsongs', {
             status: 200,
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+                "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+                "Pragma": "no-cache",
+                "Expires": "0",
             },
-            body: JSON.stringify(items)
+            body: JSON.stringify(items),
         };
     }
 });

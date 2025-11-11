@@ -66,19 +66,24 @@ export default function Page() {
         {songs.map((s) => {
           const isExpanded = expanded === s.name;
 
+          const handleClick = () => {
+            // expand/collapse
+            setExpanded(isExpanded ? null : s.name);
+            // play song
+            handlePlay(s.url, s.name);
+          };
+
           return (
             <div
               key={s.name}
-              onClick={() => setExpanded(isExpanded ? null : s.name)}
-              className={` hover:bg-[#FFFF00] ${
-                isExpanded ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
-              }`}
+              onClick={handleClick}
+              className={`hover:bg-[#FFFF00] transition-all duration-300 ${isExpanded ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
+                }`}
             >
               <SongItem
                 name={s.name}
                 url={s.url}
                 isPlaying={currentSongName === s.name}
-                onPlay={handlePlay}
                 analyser={analyser}
               />
             </div>
