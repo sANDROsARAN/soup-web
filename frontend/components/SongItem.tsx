@@ -7,7 +7,7 @@ export default function SongItem({
   url,
   isPlaying,
   onPlay,
-  analyser
+  analyser,
 }: {
   name: string;
   url: string;
@@ -16,24 +16,22 @@ export default function SongItem({
   analyser: AnalyserNode | null;
 }) {
   return (
-    <div className="relative flex items-center justify-between border-b border-white py-3 gap-4">
+    <button
+      onClick={() => onPlay(url, name)}
+      className="relative flex items-center justify-between cursor-pointer 
+      transition-all duration-300 hover:text-black"
+    >
       {/* Visualizer as background */}
       <div className="absolute inset-0 z-0">
         <Visualizer analyser={analyser} isPlaying={isPlaying} />
       </div>
 
-      {/* Foreground content */}
-      <span className="relative z-10 font-medium text-white">{name}</span>
+      <span className="inline">{name}</span>
 
-
-
-      <button
-        onClick={() => onPlay(url, name)}
-        className="relative z-10 bg-white text-black px-3 py-1 rounded"
-      >
+      {/* 
+      <button className="relative z-10 bg-white text-black px-3 py-1 rounded">
         {isPlaying ? "Pause" : "Play"}
-      </button>
-    </div>
-
+      </button> */}
+    </button>
   );
 }

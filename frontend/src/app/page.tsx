@@ -52,7 +52,7 @@ export default function Page() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat">
       <div className="max-w-xl">
         <div className="bg-[#FF0000] w-screen overflow-hidden p-4">
           <h1 className="text-7xl font-bold whitespace-nowrap animate-marquee">
@@ -62,7 +62,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-6 grid-rows-6 w-full h-[600px] p-10 gap-10">
+      <div className="grid grid-cols-6 grid-rows-6 w-full h-full p-10 gap-10 divide-x divide-y divide-[#0000FF]">
         {songs.map((s) => {
           const isExpanded = expanded === s.name;
 
@@ -70,9 +70,9 @@ export default function Page() {
             <div
               key={s.name}
               onClick={() => setExpanded(isExpanded ? null : s.name)}
-              className={`cursor-pointer transition-all duration-300
-              ${isExpanded ? "col-span-2 row-span-2" : "col-span-1 row-span-1"}
-            `}
+              className={` hover:bg-[#FFFF00] ${
+                isExpanded ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
+              }`}
             >
               <SongItem
                 name={s.name}
@@ -85,6 +85,6 @@ export default function Page() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

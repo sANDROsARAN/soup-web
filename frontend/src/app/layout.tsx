@@ -1,4 +1,6 @@
 import './globals.css';
+import BackgroundImage from "@/assets/soubwebbg.png";
+
 
 export const metadata = {
   title: 'Soup Web',
@@ -6,5 +8,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en"><body>{children}</body></html>;
+  return( 
+  <html
+      lang="en"
+      style={{
+        backgroundImage: `url(${BackgroundImage.src})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed", // This keeps the background fixed while scrolling
+      }}
+    ><body>{children}</body></html>);
 }
+
