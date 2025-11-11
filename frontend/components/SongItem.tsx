@@ -16,7 +16,7 @@ export default function SongItem({
   analyser: AnalyserNode | null;
 }) {
   return (
-    <div className="relative flex items-center justify-between border-b border-white min-w-[500px] py-3 gap-4">
+    <div className="relative flex items-center justify-between border-b border-white py-3 gap-4">
       {/* Visualizer as background */}
       <div className="absolute inset-0 z-0">
         <Visualizer analyser={analyser} isPlaying={isPlaying} />

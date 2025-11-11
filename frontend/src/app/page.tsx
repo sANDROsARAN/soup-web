@@ -1,13 +1,16 @@
 // app/page.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import SongItem from "@/components/SongItem";
 
 export default function Page() {
   const [songs, setSongs] = React.useState<{ name: string; url: string }[]>([]);
   const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
-  const [currentSongName, setCurrentSongName] = React.useState<string | null>(null);
+  const [currentSongName, setCurrentSongName] = React.useState<string | null>(
+    null
+  );
   const [analyser, setAnalyser] = React.useState<AnalyserNode | null>(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   React.useEffect(() => {
     async function load() {
@@ -49,28 +52,39 @@ export default function Page() {
   }
 
   return (
-    <div className="max-w-xl">
-      <div className="bg-[#FF0000] w-screen overflow-hidden p-4">
-        <h1 className="text-7xl font-bold whitespace-nowrap animate-marquee">
-          WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB
-        </h1>
-      </div>
-
-      <div className="flex items-center justify-center w-screen">
-        <div className="flex flex-col items-center justify-center gap-4 my-10">
-          {songs.map((s) => (
-            <SongItem
-              key={s.name}
-              name={s.name}
-              url={s.url}
-              isPlaying={currentSongName === s.name}
-              onPlay={handlePlay}
-              analyser={analyser}
-            />
-          ))}
+    <>
+      <div className="max-w-xl">
+        <div className="bg-[#FF0000] w-screen overflow-hidden p-4">
+          <h1 className="text-7xl font-bold whitespace-nowrap animate-marquee">
+            WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB &nbsp;
+            WELCOME TO THE SOUP WEB &nbsp; WELCOME TO THE SOUP WEB
+          </h1>
         </div>
       </div>
 
-    </div>
+      <div className="grid grid-cols-6 grid-rows-6 w-full h-[600px] p-10 gap-10">
+        {songs.map((s) => {
+          const isExpanded = expanded === s.name;
+
+          return (
+            <div
+              key={s.name}
+              onClick={() => setExpanded(isExpanded ? null : s.name)}
+              className={`cursor-pointer transition-all duration-300
+              ${isExpanded ? "col-span-2 row-span-2" : "col-span-1 row-span-1"}
+            `}
+            >
+              <SongItem
+                name={s.name}
+                url={s.url}
+                isPlaying={currentSongName === s.name}
+                onPlay={handlePlay}
+                analyser={analyser}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
